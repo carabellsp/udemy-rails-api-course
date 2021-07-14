@@ -12,7 +12,7 @@ require 'rails_helper'
 
 RSpec.describe Article, type: :model do
   it 'tests article object' do
-    article = FactoryBot.create(:article) # :article is the factory name
+    article = create(:article) # :article is the factory name
     expect(article.title).to eq('Sample article title')
     expect(article.title).to be_a(String)
   end
