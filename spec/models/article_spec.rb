@@ -11,9 +11,21 @@ require 'rails_helper'
 # This also means we don't need to keep storing the logic of creating our article object
 
 RSpec.describe Article, type: :model do
+  let(:article) { create(:article) } # create(:article) => article is the factory name
+
+  before do
+    article
+  end
+
   it 'tests article object' do
-    article = create(:article) # :article is the factory name
     expect(article.title).to eq('Sample article title')
+  end
+
+  it 'tests article title type' do
     expect(article.title).to be_a(String)
+  end
+
+  it 'tests article is valid' do
+    expect(article).to be_valid # same as article.valid? == true
   end
 end
