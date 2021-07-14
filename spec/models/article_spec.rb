@@ -11,7 +11,8 @@ require 'rails_helper'
 # This also means we don't need to keep storing the logic of creating our article object
 
 RSpec.describe Article, type: :model do
-  let(:article) { create(:article) } # create(:article) => article is the factory name
+  let(:article) { build(:article) } # build(:article) => article is the factory name
+  # we replace create with build so we don't need to touch the database for our tests - will speed the tests up
 
   before do
     article
@@ -25,7 +26,9 @@ RSpec.describe Article, type: :model do
     expect(article.title).to be_a(String)
   end
 
-  it 'tests article is valid' do
-    expect(article).to be_valid # same as article.valid? == true
+  describe '#validations' do
+    it 'tests article is valid' do
+      expect(article).to be_valid # same as article.valid? == true
+    end
   end
 end
